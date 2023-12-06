@@ -9,6 +9,7 @@ import SelectDate from '@/components/SelectdDate'
 import ModalAddExp from '@/components/ModalAddExp'
 import WorkingHistory from '@/components/WorkingHistory'
 import AutoCompliteTags from '@/components/AutoCompliteTags'
+import AddEducation from '@/components/AddEducation'
 export default function CreateResume() {
   const [cities, setCities] = useState(1)
   const [countries, setCountries] = useState(1)
@@ -112,6 +113,13 @@ export default function CreateResume() {
 
 
             <AutoCompliteTags placeholder="" type="text" label="Ключевые Навыки" size="fieldset-md" items={skills} onSelect={onSelect}/>
+
+
+            <h3>Образование</h3>
+
+            <AddEducation onChange={() => {}}/>
+
+
         </div>
     </main>
   )

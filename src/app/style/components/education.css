@@ -1,0 +1,17 @@
+.education {
+    position: relative;
+    width: fit-content;
+}
+.education span{
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    cursor: pointer;
+}
+.education-form a{
+    color: #1785e5;
+    cursor: pointer;
+}
+.education-form{
+    margin-top: 10px;
+}
