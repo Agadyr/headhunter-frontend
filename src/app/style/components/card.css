@@ -1,0 +1,18 @@
+.card{
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 3px 8px 0px rgba(34, 60, 80, 0.2);  
+    -moz-box-shadow:0px 3px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 3px 8px 0px rgba(34, 60, 80, 0.2);
+    padding: 20px;
+}
+.card_for_offer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.card_modal h1{
+    margin-bottom: 10px;
+}
+.card_modal p{
+    margin-bottom: 10px;
+}

@@ -1,0 +1,40 @@
+.selectdate{
+    display: flex;
+}
+.selectdate input:first-child{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    width: 30%;
+}
+.selectdate select{
+    border-left: none;    
+    border-right: none;
+    border-radius: 0;
+    width: 47%;
+}
+
+.selectdate input:last-child{
+    border-bottom-left-radius:0;
+    border-top-left-radius:0;
+    /* width: 30%; */
+}
+.salary{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.salary input{
+    width: 40%;
+}
+.salary select{
+    width: 35%;
+}
+.label{
+    width: min-content;
+}
+
+.selectdate-noday select{
+    border-left: 1px solid #ddd;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}

@@ -1,0 +1,47 @@
+.input{
+    height: 40px;
+    border-radius: 4px;
+    padding: 0 20px;
+    width: 450px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+.input:focus{
+    border: 1px solid #1785e5;
+    transition: .4s;
+}
+.mw-input:focus{
+    border: 1px solid #1785e5;
+    transition: .4s;
+}
+.autocomplite{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.tag{
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #eceff0;
+    display: inline-block;
+    margin-left: auto;
+}
+
+.textarea{
+    height: 150px;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid #ddd;
+    outline: none;
+    resize: none;
+    padding-top: 10px;
+    box-sizing: border-box;
+}
+.mw-input{
+    height: 40px;
+    border-radius: 4px;
+    padding: 0 20px;
+    border: 1px solid #ddd;
+    outline: none;
+    width: 100%;
+}
