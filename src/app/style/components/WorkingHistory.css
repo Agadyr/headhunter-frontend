@@ -1,0 +1,22 @@
+.working-history{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 15px;
+    height: max-content;
+}
+.working-history p{
+    color: #1785e5;
+}
+.working-history h3{
+    font-weight: 600;
+    margin: 10px 0;
+}
+.working-history span:last-child{
+    padding: 10px 0;
+}
+.exp{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}

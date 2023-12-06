@@ -1,5 +1,5 @@
 import { useState } from "react"
-export default function ModalAddExp({closeModal}){
+export default function ModalAddExp({closeModal,AddworkingHistory}){
     const [start_date, SetStartDate] = useState(Date.now())
     const [end_date, SetEndDate] = useState(Date.now())
     const [company_name, Setcompany_name] = useState("")
@@ -44,6 +44,7 @@ export default function ModalAddExp({closeModal}){
             company_name,
             company_description
         }
+        AddworkingHistory(workingHistory)
         console.log(workingHistory);
     }
 
@@ -102,7 +103,7 @@ export default function ModalAddExp({closeModal}){
                 <textarea className="textarea" type="text" placeholder="Опишите что вы делали на работе" onChange={onChangeCompanyresponsibilites}>{responsibilites}</textarea>
                 <div className="modal-actions">
                     <button className="button button-primary-bordered"  onClick={closeModal}>Отменить</button>
-                    <button className="button button-primary" onClick={save()}>Сохранить</button>
+                    <button className="button button-primary" onClick={save}>Сохранить</button>
                 </div>
             </div>
 

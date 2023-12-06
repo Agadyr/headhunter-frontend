@@ -7,7 +7,7 @@ export default function userLogin(){
             {step === 1 && <div className="card">
                 <form>
                     <h1>Поиск Работы</h1>
-                    <input className="input" placeholder="Введите email"/>
+                    <input className="inputauth" placeholder="Введите email"/>
                     <button className="button button-primary" onClick={() => setStep(2)}>Продолжить</button>
                 </form>
             </div>}
@@ -23,7 +23,7 @@ export default function userLogin(){
                 <h1>Отправили код на ...</h1>
                 <p>Напишите его что бы потвердить что это вы, а не кто то другой</p>
                 <form>
-                    <input className="input" placeholder="Введите код"/>
+                    <input className="inputauth" placeholder="Введите код"/>
                     <p>Повторить можно через 00:48</p>
                     <button className="button button-primary" onClick={() => setStep(3)}>Продолжить</button>
                     <button className="button button-primary-bordered" onClick={() => setStep(1)}>Назад</button>
@@ -33,8 +33,8 @@ export default function userLogin(){
             <div className="card card_modal">
                 <h1>Давайте познакомимся</h1>
                 <form>
-                    <input className="input" placeholder="Имя"/>
-                    <input className="input" placeholder="Фамилия"/>
+                    <input className="inputauth" placeholder="Имя"/>
+                    <input className="inputauth" placeholder="Фамилия"/>
                     <button className="button button-primary">Продолжить</button>
                     <button className="button button-primary-bordered" onClick={() => setStep(2)}>Назад</button>
                 </form>

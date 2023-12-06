@@ -7,9 +7,13 @@ import { useEffect, useState } from 'react'
 import AutoCompliteSelect from '@/components/AutoCompliteSelect'
 import SelectDate from '@/components/SelectdDate'
 import ModalAddExp from '@/components/ModalAddExp'
+import WorkingHistory from '@/components/WorkingHistory'
+import AutoCompliteTags from '@/components/AutoCompliteTags'
 export default function CreateResume() {
   const [cities, setCities] = useState(1)
   const [countries, setCountries] = useState(1)
+  const [skills, setSkills] = useState(1)
+  const[workinghistories,Setworkinghistories] = useState([])
   const [modalExpIsOpen,setmodalExpIsOpen] = useState(false)
     useEffect(() => {
         console.log("did mount");
@@ -20,12 +24,26 @@ export default function CreateResume() {
       axios.get(`${END_POINT}/api/region/countries`).then(res=>{
         setCountries(res.data)
       })
+
+      axios.get(`${END_POINT}/api/skills`).then(res =>{
+        setSkills(res.data)
+      })
     }, [])
     const onSelect = (data) =>{
       console.log(data);
     }
     const closeModalExp = () =>{
       setmodalExpIsOpen(false)
+    }
+    const AddworkingHistory = (item) =>{
+      Setworkinghistories([...workinghistories,item])
+      closeModalExp()
+    }
+    const removeWorkingHistory = (WorkingHistory) => {
+      let wh =[...workinghistories]
+      let index = workinghistories.indexOf(WorkingHistory)
+      wh.splice(index,1)
+      Setworkinghistories(wh)
     }
   return (
     <main>
@@ -77,16 +95,23 @@ export default function CreateResume() {
 
 
             <h3>Опыт Работы</h3>
-            {modalExpIsOpen && <ModalAddExp closeModal={closeModalExp}/>}
-            <fieldset className={"fieldset fieldset-lg"}>
+            {modalExpIsOpen && <ModalAddExp closeModal={closeModalExp} AddworkingHistory={AddworkingHistory}/>}
+            <fieldset className={"fieldset fieldset-lg jcsb-none"}>
               <label className='label'>Места работы</label>
                 <div className='exp'>
-                    <div className=''>
-
-                    </div>
-                    <button className='button button-primary-bordered' onClick={() => setmodalExpIsOpen(true)}>Добавить место работы</button>
+                    {workinghistories.map(item => (<WorkingHistory WorkingHistory={item} remove={removeWorkingHistory}/>))}
+                    <button className='button button-primary-bordered w20' onClick={() => setmodalExpIsOpen(true)}>Добавить место работы</button>
                 </div>
             </fieldset>
+
+
+            <fieldset className={"fieldset fieldset-lg"}>
+                <label>О себе</label>
+                <textarea className="textarea w45" placeholder="Расскажите о Себе" ></textarea>
+            </fieldset>
+
+
+            <AutoCompliteTags placeholder="" type="text" label="Ключевые Навыки" size="fieldset-md" items={skills} onSelect={onSelect}/>
         </div>
     </main>
   )

@@ -6,6 +6,14 @@
     border: 1px solid #ddd;
     outline: none;
 }
+.inputauth{
+    height: 40px;
+    border-radius: 4px;
+    padding: 0 20px;
+    width: 100%;
+    border: 1px solid #ddd;
+    outline: none;
+}
 .input:focus{
     border: 1px solid #1785e5;
     transition: .4s;
@@ -26,7 +34,11 @@
     display: inline-block;
     margin-left: auto;
 }
-
+.tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 .textarea{
     height: 150px;
     border-radius: 4px;
@@ -34,7 +46,8 @@
     border: 1px solid #ddd;
     outline: none;
     resize: none;
-    padding-top: 10px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
 .mw-input{

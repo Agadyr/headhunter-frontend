@@ -68,3 +68,12 @@
 .mtb2{
     margin: 10px 0;
 }
+.w20{
+    max-width: 200px;
+}
+.jcsb-none{
+    justify-content: left !important;
+}
+.w45{
+    width: 450px !important;
+}

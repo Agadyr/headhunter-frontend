@@ -1,10 +1,12 @@
 .dropdown{
     position: absolute;
     top: 60px;
-    right: 0;
     border: 1px solid #ddd;
+    background-color: #fff;
     border-radius: 4px;
-    width: 64%;
+    width: 300px;
+    left: 200px;
+    z-index: 2;
 }
 .dropdown a{
     display: block;
@@ -17,4 +19,21 @@
 }
 .dropdown a:hover{
     background-color: #e4e4e4;
+}
+.dropdown-tags{
+    padding: 10px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.dropdown-tags a{
+    display: inline-block;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.dropdown-tags h3{
+    width: 100%;
+    margin-bottom: 5px;
 }
