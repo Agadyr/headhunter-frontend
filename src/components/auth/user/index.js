@@ -1,14 +1,45 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { authorize, sendVerifacationEMail, VerifyCode } from "@/app/store/slices/authSlice"
 export default function userLogin(){
+    const isAuth = useSelector((state) => state.auth.isAuth)
     const [step, setStep] = useState(1)
+    const[email,Setemail] = useState('')
+    const[code,setCode] = useState('')
+    const[time,setTime]  = useState(119)
+    const dispatch = useDispatch()
+    const sendVerifyEmail  = (e) =>{
+        dispatch(sendVerifacationEMail(email))
+        setStep(2)
+    }
+    const VerifyCodeFunc = () =>{
+        dispatch(VerifyCode(email,code))
+    }
+    useEffect(() =>{
+        let interval;
+        if(step === 2){
+            interval = setInterval(() =>{
+                if(time !== 0)
+                {
+                    // setTime((time) => time- 1) не правильно работает
+                    setTime(time => time - 1) //Более менее
+                }
+            },1000)
+        }else if(interval){
+            clearInterval(interval)
+        }
+    },[step])
+    const minutes = parseInt(time/60)
+    const sec = time % 60
     return(
         <section className="login-page"> 
+            {isAuth ? "true":"false"}
             {step === 1 && <div className="card">
                 <form>
                     <h1>Поиск Работы</h1>
-                    <input className="inputauth" placeholder="Введите email"/>
-                    <button className="button button-primary" onClick={() => setStep(2)}>Продолжить</button>
+                    <input className="inputauth" placeholder="Введите email" value={email} onChange={(e) => Setemail(e.target.value)}/>
+                    <button className="button button-primary" onClick={sendVerifyEmail}>Продолжить</button>
                 </form>
             </div>}
             {step === 1 && <div className="card">
@@ -23,20 +54,10 @@ export default function userLogin(){
                 <h1>Отправили код на ...</h1>
                 <p>Напишите его что бы потвердить что это вы, а не кто то другой</p>
                 <form>
-                    <input className="inputauth" placeholder="Введите код"/>
-                    <p>Повторить можно через 00:48</p>
-                    <button className="button button-primary" onClick={() => setStep(3)}>Продолжить</button>
+                    <input className="inputauth" placeholder="Введите код" value={code} onChange={(e) => setCode(e.target.value)}/>
+                    <p>Повторить можно через {minutes}:{sec}</p>
+                    <button className="button button-primary" onClick={VerifyCodeFunc} type="button">Продолжить</button>
                     <button className="button button-primary-bordered" onClick={() => setStep(1)}>Назад</button>
-                </form>
-            </div>}
-            {step === 3 &&
-            <div className="card card_modal">
-                <h1>Давайте познакомимся</h1>
-                <form>
-                    <input className="inputauth" placeholder="Имя"/>
-                    <input className="inputauth" placeholder="Фамилия"/>
-                    <button className="button button-primary">Продолжить</button>
-                    <button className="button button-primary-bordered" onClick={() => setStep(2)}>Назад</button>
                 </form>
             </div>}
         </section>

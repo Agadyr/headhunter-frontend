@@ -10,10 +10,13 @@ import ModalAddExp from '@/components/ModalAddExp'
 import WorkingHistory from '@/components/WorkingHistory'
 import AutoCompliteTags from '@/components/AutoCompliteTags'
 import AddEducation from '@/components/AddEducation'
+import AddLang from '@/components/AddLang'
+import SelectEmploymentTypes from '@/components/SelectEmploymentTypes'
 export default function CreateResume() {
   const [cities, setCities] = useState(1)
   const [countries, setCountries] = useState(1)
   const [skills, setSkills] = useState(1)
+  const[employmentTypes,SetemploymentTypes] = useState([])
   const[workinghistories,Setworkinghistories] = useState([])
   const [modalExpIsOpen,setmodalExpIsOpen] = useState(false)
     useEffect(() => {
@@ -28,6 +31,10 @@ export default function CreateResume() {
 
       axios.get(`${END_POINT}/api/skills`).then(res =>{
         setSkills(res.data)
+      })
+
+      axios.get(`${END_POINT}/api/employment-types`).then(res =>{
+        SetemploymentTypes(res.data)
       })
     }, [])
     const onSelect = (data) =>{
@@ -49,6 +56,7 @@ export default function CreateResume() {
   return (
     <main>
       <Header/>
+
         <div className='container p7b7'>
             <h1>Ваша Резюме</h1>
 
@@ -118,7 +126,16 @@ export default function CreateResume() {
             <h3>Образование</h3>
 
             <AddEducation onChange={() => {}}/>
+            
 
+            <h3 className='mt2'>Владения языками</h3>
+
+            <AddLang onChange={() => {}}/>
+
+            <h3 className='mt2'>Другая важная информация</h3>
+            <SelectEmploymentTypes label="Занятость" employmentTypes={employmentTypes} size="fieldset-sm"/>
+
+            <button className='button button-primary'>Сохранить и опубликовать</button>
 
         </div>
     </main>
