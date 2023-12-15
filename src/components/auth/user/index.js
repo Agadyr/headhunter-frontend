@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { useRouter } from "next/navigation"
 import { authorize, sendVerifacationEMail, VerifyCode } from "@/app/store/slices/authSlice"
 export default function userLogin(){
     const isAuth = useSelector((state) => state.auth.isAuth)
@@ -8,6 +9,7 @@ export default function userLogin(){
     const[email,Setemail] = useState('')
     const[code,setCode] = useState('')
     const[time,setTime]  = useState(119)
+    const router = useRouter()
     const dispatch = useDispatch()
     const sendVerifyEmail  = (e) =>{
         dispatch(sendVerifacationEMail(email))
@@ -30,6 +32,9 @@ export default function userLogin(){
             clearInterval(interval)
         }
     },[step])
+    useEffect(() =>{
+        if(isAuth) router.push("/resumes")
+    },[isAuth])
     const minutes = parseInt(time/60)
     const sec = time % 60
     return(

@@ -12,6 +12,7 @@ import AutoCompliteTags from '@/components/AutoCompliteTags'
 import AddEducation from '@/components/AddEducation'
 import AddLang from '@/components/AddLang'
 import SelectEmploymentTypes from '@/components/SelectEmploymentTypes'
+import { weakMapMemoize } from '@reduxjs/toolkit'
 export default function CreateResume() {
   const [cities, setCities] = useState(1)
   const [countries, setCountries] = useState(1)
@@ -19,6 +20,13 @@ export default function CreateResume() {
   const[employmentTypes,SetemploymentTypes] = useState([])
   const[workinghistories,Setworkinghistories] = useState([])
   const [modalExpIsOpen,setmodalExpIsOpen] = useState(false)
+  const [WeatherData,SetWeatherData] = useState()
+
+  const API_KEY = '3769d468b23b9ca16e80755000761c1d'
+  const API_URL = 'https://api.openweathermap.org/data/2.5/weather?&units=metric&q=Kazakhstan'
+
+
+
     useEffect(() => {
         console.log("did mount");
         axios.get(`${END_POINT}/api/region/cities`).then(res => {
@@ -36,7 +44,11 @@ export default function CreateResume() {
       axios.get(`${END_POINT}/api/employment-types`).then(res =>{
         SetemploymentTypes(res.data)
       })
+
     }, [])
+    // console.log(WeatherData);
+    
+
     const onSelect = (data) =>{
       console.log(data);
     }
@@ -53,6 +65,7 @@ export default function CreateResume() {
       wh.splice(index,1)
       Setworkinghistories(wh)
     }
+
   return (
     <main>
       <Header/>
