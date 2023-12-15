@@ -87,11 +87,11 @@ export default function CreateResume() {
                 <div className='radio-group'>
                   <div className='radio'>
                     <input type="radio" name='gender' id='g1' />
-                    <label  for='g1'>Мужской</label>
+                    <label  htmlFor='g1'>Мужской</label>
                   </div>
                   <div className='radio'>
                     <input type="radio" name='gender' id='g2'/>
-                    <label for='g2'>Женский</label>
+                    <label htmlFor='g2'>Женский</label>
                   </div>
                 </div>
             </fieldset>

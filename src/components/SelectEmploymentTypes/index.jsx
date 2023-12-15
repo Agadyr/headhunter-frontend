@@ -21,7 +21,7 @@ export default function SelectEmploymentTypes({employmentTypes,label,size}){
             <div>
                {employmentTypes.map((type,index) => <div className="checkbox" key={index}>
                     <input type="checkbox" name="employmentTypes" value={type.id} id={type.id + "-type"} onChange={onSelect}/>
-                    <label for={type.id + "-type"}>{type.name}</label>
+                    <label htmlFor={type.id + "-type"}>{type.name}</label>
                 </div>)}
             </div>
         </fieldset>

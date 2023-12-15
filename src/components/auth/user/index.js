@@ -44,7 +44,7 @@ export default function userLogin(){
                 <form>
                     <h1>Поиск Работы</h1>
                     <input className="inputauth" placeholder="Введите email" value={email} onChange={(e) => Setemail(e.target.value)}/>
-                    <button className="button button-primary" onClick={sendVerifyEmail}>Продолжить</button>
+                    <button className="button button-primary" type="button" onClick={sendVerifyEmail}>Продолжить</button>
                 </form>
             </div>}
             {step === 1 && <div className="card">
