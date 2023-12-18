@@ -17,7 +17,6 @@ export default function SelectEmploymentTypes({employmentTypes,label,size,onChan
     useEffect(() => {
         onChange(eTypes)
     },[eTypes])
-    console.log(eTypes);
     return(
         <fieldset className={"fieldset " + size}>
             <label >{label}</label>

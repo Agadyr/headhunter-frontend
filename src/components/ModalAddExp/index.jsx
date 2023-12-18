@@ -4,7 +4,7 @@ export default function ModalAddExp({closeModal,AddworkingHistory}){
     const [end_date, SetEndDate] = useState(Date.now())
     const [company_name, Setcompany_name] = useState("")
     const [company_description, Setcompany_description] = useState("")
-    const [responsibilites , Setresponsibilites] = useState("")
+    const [responsibilities , Setresponsibilites] = useState("")
 
 
     const onChangeMonth = (e) => {
@@ -40,7 +40,7 @@ export default function ModalAddExp({closeModal,AddworkingHistory}){
         const workingHistory = {
             start_date,
             end_date,
-            responsibilites,
+            responsibilities,
             company_name,
             company_description
         }
@@ -100,7 +100,7 @@ export default function ModalAddExp({closeModal,AddworkingHistory}){
                 <input className="mw-input" type="text" placeholder="Должность" value={company_description} onChange={onChangeCompanydesc}/>
 
                 <h4>Обязанности на рабочем месте</h4>
-                <textarea className="textarea" type="text" placeholder="Опишите что вы делали на работе" onChange={onChangeCompanyresponsibilites}>{responsibilites}</textarea>
+                <textarea className="textarea" type="text" placeholder="Опишите что вы делали на работе" onChange={onChangeCompanyresponsibilites}>{responsibilities}</textarea>
                 <div className="modal-actions">
                     <button className="button button-primary-bordered"  onClick={closeModal}>Отменить</button>
                     <button className="button button-primary" onClick={save}>Сохранить</button>

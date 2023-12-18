@@ -12,13 +12,17 @@ import AutoCompliteTags from '@/components/AutoCompliteTags'
 import AddEducation from '@/components/AddEducation'
 import AddLang from '@/components/AddLang'
 import SelectEmploymentTypes from '@/components/SelectEmploymentTypes'
-import { weakMapMemoize } from '@reduxjs/toolkit'
+import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
+import { createResume } from '../store/slices/resumeSlice'
 export default function CreateResume() {
+  const router = useRouter()
+  const dispatch = useDispatch()
   const [cities, setCities] = useState(1)
   const [countries, setCountries] = useState(1)
   const [allskills, setSkills] = useState(1)
   const[allemploymentTypes,SetemploymentTypes] = useState([])
-  const[workinghistories,Setworkinghistories] = useState([])
+  const[workingHistories,Setworkinghistories] = useState([])
   const [modalExpIsOpen,setmodalExpIsOpen] = useState(false)
   const [first_name,setName] = useState("")
   const [last_name,setSureName] = useState("")
@@ -35,6 +39,7 @@ export default function CreateResume() {
   const [foreignLanguages,SetforeignLanguages] = useState("")
   const[employmentTypes,SetSelectedEmpTypes] = useState([])
   const[about,setAbout] = useState('')
+ 
 
 
     useEffect(() => {
@@ -58,20 +63,16 @@ export default function CreateResume() {
     }, [])
 
     
-
-    const onSelect = (data) =>{
-      setCity(data.id)
-    }
     const closeModalExp = () =>{
       setmodalExpIsOpen(false)
     }
     const AddworkingHistory = (item) =>{
-      Setworkinghistories([...workinghistories,item])
+      Setworkinghistories([...workingHistories,item])
       closeModalExp()
     }
     const removeWorkingHistory = (WorkingHistory) => {
-      let wh =[...workinghistories]
-      let index = workinghistories.indexOf(WorkingHistory)
+      let wh =[...workingHistories]
+      let index = workingHistories.indexOf(WorkingHistory)
       wh.splice(index,1)
       Setworkinghistories(wh)
     }
@@ -83,24 +84,28 @@ export default function CreateResume() {
       SetSelectedSkills(arr.join(","))
     }
     const handleSave = () => {
-      console.log("ONSAVE",{
+      dispatch(createResume({
         first_name,
         last_name,
         phone,
-        cityId,
         birthday,
         gender,
         about,
-        citizenship,
         position,
         salary,
         salary_type,
-        workinghistories,
+        main_language:"Казахский",
         skills,
+        cityId,
+        citizenship,
+        workingHistories,
         education,
         employmentTypes,
-        foreignLanguages
-      });
+        foreignLanguages,
+
+      },
+      router
+      ));
     }
 
 
@@ -159,7 +164,7 @@ export default function CreateResume() {
             <fieldset className={"fieldset fieldset-lg jcsb-none"}>
               <label className='label'>Места работы</label>
                 <div className='exp'>
-                    {workinghistories.map(item => (<WorkingHistory WorkingHistory={item} remove={removeWorkingHistory}/>))}
+                    {workingHistories.map(item => (<WorkingHistory WorkingHistory={item} remove={removeWorkingHistory}/>))}
                     <button className='button button-primary-bordered w20' onClick={() => setmodalExpIsOpen(true)}>Добавить место работы</button>
                 </div>
             </fieldset>
