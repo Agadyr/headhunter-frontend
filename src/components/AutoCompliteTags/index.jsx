@@ -52,7 +52,7 @@ export default function AutoCompliteTags({label,placeholder,type,size,items,onSe
             }
         })
         SetFilteredItems(fi)
-        onSelect[value]
+        onSelect(value)
     },[value])
     return(
         <div className="fieldset-lg">

@@ -9,11 +9,10 @@ export default function AddEducation({onChange}){
         let eds = [...education]
         eds[index][name] = e.target.value
         Seteducation(eds)
-        console.log(index, name);
     }
     const newEducation = () => {
         Seteducation([...education,{
-            level:"",
+            level:"Высшее",
             university_name:"",
             faculty:"",
             major:"",

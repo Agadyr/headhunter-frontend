@@ -6,6 +6,9 @@
     border: none;
     cursor: pointer;
     line-height: 40px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .button-primary{
