@@ -1,8 +1,8 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Input from "../input"
 
-export default function AutoCompliteSelect({label,placeholder,type,size,items,onSelect}){
+export default function AutoCompliteSelect({label,placeholder,type,size,items,onSelect,selected}){
     const [value,setValue] = useState({name:""})
     const [filtereditems , SetFilteredItems] = useState([])
     const onClick = (item) =>{
@@ -10,6 +10,11 @@ export default function AutoCompliteSelect({label,placeholder,type,size,items,on
         setValue(item)
         SetFilteredItems([])
     }
+    useEffect(() => {
+        items.map(item => {
+            if(item.id === selected) setValue(item)
+        })
+    },[selected,items])
     const reset = () =>{
         setValue({name:""})
         onSelect(null)

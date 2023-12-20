@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react"
 
-export default function AddEducation({onChange}){
-    const[education,Seteducation] = useState([])
+export default function AddEducation({onChange,education}){
     const onChangeData = (e) => {
         let [index, name] = e.target.name.split("-")
         index = index * 1
 
         let eds = [...education]
         eds[index][name] = e.target.value
-        Seteducation(eds)
+        onChange(eds)
     }
     const newEducation = () => {
-        Seteducation([...education,{
+        onChange([...education,{
             level:"Высшее",
             university_name:"",
             faculty:"",
@@ -23,11 +22,8 @@ export default function AddEducation({onChange}){
         const eds = [...education]
         const index = education.indexOf(ed)
         eds.splice(index,1)
-        Seteducation(eds)
+        onChange(eds)
     }
-    useEffect(() => {
-        onChange(education)
-    },[education])
     const educations = education.map((ed,index) => (
         <div className="education" key={index}>
         <span onClick={() => removeEd(ed)}>X</span>

@@ -2,7 +2,7 @@
 import { useState } from "react"
 import Input from "../input"
 import { useEffect } from "react"
-export default function AutoCompliteTags({label,placeholder,type,size,items,onSelect}){
+export default function AutoCompliteTags({label,placeholder,type,size,items,onSelect,selected}){
     const [value,setValue] = useState([])
     const [filtereditems , SetFilteredItems] = useState([])
     const onClick = (item) =>{
@@ -15,6 +15,12 @@ export default function AutoCompliteTags({label,placeholder,type,size,items,onSe
         setValue(wh)
         SetFilteredItems([...filtereditems,tag])
     }
+    useEffect(() => {
+        if(JSON.stringify(value) !== JSON.stringify(selected)){
+            setValue(selected)
+        }
+
+    },[selected])
     const onChange = (e) =>{
         // console.log(e.target.value);
         if(e.target.value === ""){

@@ -13,7 +13,6 @@ export default function ResumePage() {
   const didMount = () => {
     dispatch(getResumeById(id));
   };
-  console.log(resume);
   useEffect(didMount, []);
   const birthday = new Date(resume.birthday);
   const MonthsInRussian = [
@@ -72,7 +71,7 @@ export default function ResumePage() {
             <Link href="/resumes" className="link">
               К списку резюме
             </Link>
-            <Link className="button button-secondary-bordered"href="/edit-resume">
+            <Link className="button button-secondary-bordered"href={`/edit-resume/${resume.id}`}>
               Редактировать
             </Link>
           </div>

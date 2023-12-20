@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react"
 
-export default function AddLang({onChange}){
+export default function AddLang({onChange,foreignLanguages}){
 
-    const[foreignLanguages,SetforeignLanguages] = useState([])
     const remove = (index) =>{
         const langs = [...foreignLanguages]
         langs.splice(index,1)
-        SetforeignLanguages(langs)
+        onChange(langs)
     }
     const onSelect = (e) =>{
         const[index,key] = e.target.name.split("-")
         const langs = [...foreignLanguages]
         langs[index][key] = e.target.value
-        SetforeignLanguages(langs)
+        onChange(langs)
 
         onChange(langs)
 
@@ -38,7 +37,7 @@ export default function AddLang({onChange}){
     return(
         <div className="education-form">
             {lns}
-            <a onClick={() => SetforeignLanguages([...foreignLanguages, {name:"", level:""}])}>Добавить Язык</a>
+            <a onClick={() => onChange([...foreignLanguages, {name:"", level:""}])}>Добавить Язык</a>
         </div>
     )
 }
