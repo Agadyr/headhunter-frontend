@@ -1,7 +1,9 @@
+'use client'
+import Link from "next/link"
 export default function Myresume({item}){
     return(
         <div className="card mtb4">
-            <a className="h3" href="">{item.position}</a>
+            <Link className="h3 link" href={`/resumes/${item.id}`}>{item.position}</Link>
             <p className="mtb2">Создан {item.createdAt}</p>
             <h3>Статистика</h3>
             <div className="flex">
