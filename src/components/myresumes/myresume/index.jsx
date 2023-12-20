@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Myresume({item}){
     return(
         <div className="card mtb4">
-            <Link className="h3 link" href={`/resumes/${item.id}`}>{item.position}</Link>
+            <Link className="h3 link mb2" href={`/resumes/${item.id}`}>{item.position}</Link>
             <p className="mtb2">Создан {item.createdAt}</p>
             <h3>Статистика</h3>
             <div className="flex">

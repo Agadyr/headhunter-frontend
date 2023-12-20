@@ -1,0 +1,13 @@
+.working-history-date {
+  width: 130px;
+}
+.salary{
+    align-items: center;
+    width: 70%;
+}
+.salary h2{
+    font-weight:600;
+}
+.work-history-ofuser h4,p{
+    margin: 0 0 10px 0 !important;
+}

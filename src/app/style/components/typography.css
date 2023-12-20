@@ -9,17 +9,26 @@ h2{
 h3, .h3{
     font-size: 16px;
     font-weight: 700;
+    color: #000;
+    margin: 10px 0;
 }
 a{
     text-decoration: none;
     color: #000;
 }
-h4, .h4{
-    font-size: 12px;
-    font-weight: 700;
+p{
     margin: 10px 0;
+}
+h4, .h4{
+    font-size: 13px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+.lh{
+    line-height: 27px;
 }
 .link{
     color: #589beb;
     text-decoration: none;
+    cursor: pointer;
 }
