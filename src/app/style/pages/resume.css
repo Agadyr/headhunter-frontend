@@ -11,3 +11,9 @@
 .work-history-ofuser h4,p{
     margin: 0 0 10px 0 !important;
 }
+.deleteResume{
+    position: absolute;
+    cursor: pointer;
+    right: 20px;
+    top: 30px;
+}

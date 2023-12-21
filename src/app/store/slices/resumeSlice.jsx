@@ -19,11 +19,16 @@ export const resumeSlice = createSlice({
         },
         uppendResume: (state,action) => {
             state.resumes = [...state.resumes,action.payload.newresume]
-        }   
+        },
+        handleDeletedResume:(state,action) => {
+            let resumes = [...state.resumes]
+            resumes = resumes.filter(item => item.id !== action.payload )
+            state.resumes = resumes
+        }
     }
 })
 
-export const {setMyResumes,uppendResume,setResume} = resumeSlice.actions
+export const {setMyResumes,uppendResume,setResume,handleDeletedResume} = resumeSlice.actions
 
 export const getMyresumes = () => async(dispatch) =>{
     try {
@@ -60,6 +65,15 @@ export const editResume = (sendData,router) => async (dispatch) => {
     try {
         const res = await axios.put(`${END_POINT}/api/resume`,sendData)
         router.push("/resumes")
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+    }
+}
+
+export const deleteResume = (id) => async (dispatch) => {
+    try {
+        const res = await axios.delete(`${END_POINT}/api/resume/${id}`)
+        dispatch(handleDeletedResume(id))
     } catch (error) {
         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
     }
