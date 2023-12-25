@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useRouter } from "next/navigation"
 import { authorize, sendVerifacationEMail, VerifyCode } from "@/app/store/slices/authSlice"
+import Link from "next/link"
 export default function userLogin(){
     const isAuth = useSelector((state) => state.auth.isAuth)
     const [step, setStep] = useState(1)
@@ -51,7 +52,7 @@ export default function userLogin(){
                 <div className="card_for_offer">
                     <h1>Поиск Сотрудников</h1>
                     <p>Размещение вакансий и доступ к базе резюме</p>
-                    <button className="button button-primary-bordered">Я ищу Сотрудников</button>
+                    <Link href="employer/signin" className="button button-primary-bordered">Я ищу Сотрудников</Link>
                 </div>
             </div>}
             {step === 2 &&
