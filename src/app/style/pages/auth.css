@@ -1,0 +1,29 @@
+.bg{
+    background-image: url('/images/bgv.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+.auth-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.login-page .card{
+    background-color: #fff;
+    padding-bottom: 20px;
+}
+.login-page .card h1{
+
+    font-size: 18px;
+
+}
+.login-page .card p{
+    max-width: 350px;
+    line-height: 20px;
+    font-size: 12px;
+}
