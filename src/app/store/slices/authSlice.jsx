@@ -8,7 +8,8 @@ const token = localStorage.getItem("token")
 let initialState = {
     isAuth:false,
     currentUSer:null,
-    tokenExt:0
+    tokenExt:0,
+    error:null
 }
 if(token){
     let decodedToken = jwtDecode(token)
@@ -54,11 +55,14 @@ export const authSlice = createSlice({
             state.currentUSer = null,
             state.exp = 0,
             localStorage.removeItem("token")
+        },
+        SetError:(state,action)=>{
+            state.error = action.payload
         }
     }
 })
 
-export const {authorize,logOut} = authSlice.actions
+export const {authorize,logOut,SetError} = authSlice.actions
 
 export const sendVerifacationEMail = (email) => (dispatch) =>{
     axios.post(`${END_POINT}/api/auth/sendmail`,{
@@ -71,6 +75,32 @@ export const VerifyCode = (email,code) => (dispatch) =>{
         code
     }).then(res => {
         dispatch(authorize(res.data))
+    })
+}
+
+
+export const signUp = (form,router) => (dispatch) =>{
+    const fd = new FormData()
+    fd.append("full_name", form.full_name)
+    fd.append("email", form.email)
+    fd.append("password", form.password)
+    fd.append("password2", form.password2)
+    fd.append("company_name", form.company_name)
+    fd.append("company_description", form.company_description)
+    fd.append("company_address", form.company_address)
+    fd.append("company_logo", form.company_logo)
+
+    
+    axios.post(`${END_POINT}/api/auth/signup`,fd).then(res => {
+        router.push("/employer/signin")
+    }).catch(e => {
+        console.log(e);
+        if(e.response){
+            dispatch(SetError(e.response.data))
+        }else{
+            dispatch(SetError('e'))
+        }
+
     })
 }
 
