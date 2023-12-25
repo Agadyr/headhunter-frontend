@@ -37,3 +37,13 @@
     color: #303233;
     background-color: #FAFAFA;
 }
+.btn-hover{
+    background: transparent;
+    border: 1px solid #1785e5;
+    color: #1785e5;
+
+}
+.btn-hover:hover{
+    background:#1785e5;
+    color: #fff;
+}

@@ -105,4 +105,20 @@ export const signUp = (form,router) => (dispatch) =>{
 }
 
 
+export const signIn = (data,router) => (dispatch) =>{
+    
+    axios.post(`${END_POINT}/api/auth/login`,data).then(res => {
+        dispatch(authorize(res.data))
+        router.push("/vacansy")
+    }).catch(e => {
+        console.log(e);
+        if(e.response && e.response.data){
+            dispatch(SetError(e.response.data))
+        }else{
+            dispatch(SetError('e'))
+        }
+
+    })
+}
+
 export default authSlice.reducer

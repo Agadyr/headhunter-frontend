@@ -5,8 +5,7 @@
     padding: 20px;
 }
 .login-page .card {
-    max-width: 400px;
-    width: 100%;
+    width: 700px !important;
     margin: 20px 0;
 }
 

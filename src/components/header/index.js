@@ -5,13 +5,16 @@ import { logOut } from "@/app/store/slices/authSlice"
 export default function Header(){
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.auth.isAuth)
+    const currentUser = useSelector((state) => state.auth.currentUSer)
+    console.log(currentUser);
     return(
         <header className="header"> 
             <div className="container">
                 <div className="header-inner">
                     <div>
                         <Link href="/"><img src="/images/logo.svg"/></Link>
-                        <Link href="/resumes">Мои резюме</Link>
+                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href="/vacansy">Мои вакансии</Link>}
+                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href="/resumes">Мои резюме</Link>}
                         <a>Помощь</a>
                     </div>
                     <div>
@@ -19,9 +22,16 @@ export default function Header(){
                         <img src="/images/search.svg"/>
                             Поиск
                         </button>
+                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && 
+                        <Link href="/create-vacansy" className="header-button  header-button-green">
+                            Создать Вакансию
+                        </Link>}
+
+                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && 
                         <Link href="/create-resume" className="header-button  header-button-green">
                             Создать Резюме
-                        </Link>
+                        </Link>}
+
                         {!isAuth && <Link href="/login" className="header-button">
                             Войти
                         </Link>}

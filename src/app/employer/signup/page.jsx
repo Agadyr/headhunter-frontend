@@ -19,7 +19,6 @@ export default function EmployerSignUp() {
     const dispatch = useDispatch()
     const router = useRouter()
     const error = useSelector((state) => state.auth.error)
-    console.log(error);
     useEffect(() => {
         return () => {
             dispatch(SetError(null))
@@ -43,11 +42,11 @@ export default function EmployerSignUp() {
 return (
     <main className="bg">
         <div className="container">
-            <div className="auth-header">
+            <div className="auth-header flex-jc-c">
             <img className="mb2" src="/images/logo.svg" alt="" />
             <section className="login-page"> 
                 {step === 1 && <div className="card mb5">
-                <h1 className="mtb4">Регистрация для поиска сотрудников</h1>
+                <h1 className="mtb4">Поиск сотрудников</h1>
                 <p>В завершении на почту придёт пароль</p>
                     <form>
                         <input className="inputauth" placeholder="Введите email" value={email} onChange={(e) => Setemail(e.target.value)}/>
