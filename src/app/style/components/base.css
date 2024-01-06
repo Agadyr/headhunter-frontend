@@ -107,3 +107,6 @@
 .error{
     color: red !important;
 }
+.ck-powered-by{
+    display: none;
+}

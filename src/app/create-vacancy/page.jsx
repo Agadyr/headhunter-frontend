@@ -2,9 +2,12 @@
 import { useEffect, useState } from "react"
 import Header from "@/components/header"
 import { useDispatch, useSelector } from "react-redux"
-import { getSpecializations,getCities, getexperiences } from "@/app/store/slices/vacancySlice"
+import { getSpecializations,getCities, getexperiences, getSkills, getEmpTypes, setEmpTypes } from "@/app/store/slices/vacancySlice"
 import ModalSelectSpec from "@/components/ModalSelectSpec"
 import AutoCompliteSelect from "@/components/AutoCompliteSelect"
+import AutoCompliteTags from "@/components/AutoCompliteTags"
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default function CreateVacancy(){
     const[name,SetName] = useState('')
     const [cityId,setCity] = useState()
@@ -13,7 +16,10 @@ export default function CreateVacancy(){
     const[salary_to,Setsalary_to] = useState("")
     const[salary_type,SetSalaryType] = useState('KZT')
     const[address,SetAdress] = useState('')
+    const[description,Setdescription] = useState("<h2>Обязанности</h2> <ul><li></li><li></li></ul><h2>Требование</h2><ul><li></li><li></li></ul><h2>Условия</h2><ul><li></li><li></li></ul>")
     const[experienceId,SetExperienceId] = useState()
+    const[skills, SetSelectedSkills] = useState([])
+    const[employmentTypeId,SetEmploymentTypes] = useState()
     const [isSpecModalOpen,SetSpecModalOpen] = useState(false)
     const dispatch = useDispatch()
 
@@ -25,6 +31,8 @@ export default function CreateVacancy(){
         dispatch(getSpecializations())
         dispatch(getCities())
         dispatch(getexperiences())
+        dispatch(getSkills())
+        dispatch(getEmpTypes())
     },[])
 
     const handleOnSpecChange = (e) => {
@@ -33,9 +41,16 @@ export default function CreateVacancy(){
     const handleChangeExp = (e) => {
         SetExperienceId(e.target.value)
     }
+    const onSkillsChange = (data) => {
+        const arr = data.map(item => item.name)
+        SetSelectedSkills(arr.join(","))
+      }
 
     const cities = useSelector(state => state.vacancy.cities)
     const experiences = useSelector(state => state.vacancy.experiences)
+    const allskills = useSelector(state => state.vacancy.skills)
+    const empTypes = useSelector(state => state.vacancy.empTypes)
+    
     return(
         <main>
             <Header/>
@@ -56,7 +71,7 @@ export default function CreateVacancy(){
                 </fieldset>
                 {isSpecModalOpen && <ModalSelectSpec closeModal={closeSpecModal} onChange={handleOnSpecChange} value={specializationId}/>}
 
-                <AutoCompliteSelect placeholder="" type="text" label="Город проживания" size="fieldset-md fieldset-vertical" items={cities} onSelect={(data) => setCity(data.id)}/>
+                <AutoCompliteSelect placeholder="Например, Караганда" type="text" label="Город проживания" size="fieldset-md fieldset-vertical" items={cities} onSelect={(data) => setCity(data.id)}/>
 
                 <fieldset className="fieldset-vertical fieldset-md">
                     <label>Предполагаемый уровень дохода в месяц или за объем робот</label>
@@ -80,14 +95,58 @@ export default function CreateVacancy(){
                 <fieldset className="fieldset-vertical fieldset-md">
                     <label>Предполагаемый уровень дохода в месяц или за объем робот</label>
                     <div>
-                        {experiences.map((exp,index) => 
-                        <div className="radio" key={index}>
+                        {experiences.map(exp => 
+                        <div className="radio" key={exp.id}>
                             <input type="radio" value={exp.id} name="exp" onChange={handleChangeExp}/>
                             <label>{exp.duration}</label>
                         </div>)}
                     </div>
                     
                 </fieldset>
+
+                <fieldset className="mtb4">
+                    <h3 >Расскажите про вакансию</h3>
+                    <div className="mtb4">
+                    <CKEditor
+                    editor={ ClassicEditor }
+                    config={ {
+                        toolbar: [ 'bold', 'italic','bulletedList','numberedList','redo' ]
+                    } }
+                    data={description}
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event,editor ) => {
+                        const data = editor.getData()
+                        Setdescription(data)
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
+                    </div>
+                </fieldset>
+
+                <AutoCompliteTags placeholder="Например, организация конференций" type="text" label="Ключевые Навыки" size="fieldset-md fieldset-vertical" items={allskills} onSelect={onSkillsChange} selected={skills.length > 0 ? skills.split(",").map(item => ({name:item})) : []}/>
+
+                <fieldset className="fieldset-vertical fieldset-md">
+                    <h2 className="mtb2">Дополнительно</h2>
+                    <label>Тип занятости</label>
+                    <div>
+                        {empTypes.map(et => 
+                        <div className="radio" key={et.id}>
+                            <input type="radio" value={et.id} name="exp" onChange={(e) => SetEmploymentTypes(e.target.value)}/>
+                            <label>{et.name}</label>
+                        </div>)}
+                    </div>
+                    
+                </fieldset>
+
+                <button className="button button-primary">Продолжить</button>
             </div>
         </main>
     )

@@ -11,7 +11,9 @@ export const VacancySlice = createSlice({
         vacancy:{},
         specializations:[],
         cities:[],
-        experiences:[]
+        experiences:[],
+        skills:[],
+        empTypes:[]
     },
     reducers:{
         SetMyVacancies: (state,action) => {
@@ -36,11 +38,17 @@ export const VacancySlice = createSlice({
         },
         setExperiences:(state,action) => {
             state.experiences = action.payload
+        },
+        setSkills:(state,action) => {
+            state.skills = action.payload
+        },
+        setEmpTypes:(state,action)=>{
+            state.empTypes = action.payload
         }
     }
 })
 
-export const {SetMyVacancies,uppendVacancy,setVacancy,handleDeletedVacancy,setSpecializations,setCities,setExperiences} = VacancySlice.actions
+export const {SetMyVacancies,uppendVacancy,setVacancy,handleDeletedVacancy,setSpecializations,setCities,setExperiences,setSkills,setEmpTypes} = VacancySlice.actions
 
 export const getMyvacancies = () => async(dispatch) =>{
     try {
@@ -87,6 +95,30 @@ export const getexperiences = () => async(dispatch) => {
     }
 
 }
+
+
+export const getSkills = () => async(dispatch) => {
+    try {
+       const res = await axios.get(`${END_POINT}/api/skills`)
+       dispatch(setSkills(res.data))
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+
+    }
+
+}
+
+export const getEmpTypes= () => async(dispatch) => {
+    try {
+       const res = await axios.get(`${END_POINT}/api/employment-types`)
+       dispatch(setEmpTypes(res.data))
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+
+    }
+
+}
+
 
 // export const getResumeById = (id) => async(dispatch) =>{
 //     try {

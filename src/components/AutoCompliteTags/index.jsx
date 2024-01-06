@@ -73,7 +73,7 @@ export default function AutoCompliteTags({label,placeholder,type,size,items,onSe
                 <Input placeholder={placeholder} type={type} onChange={onChange} label={label} size={size}/>
                 {filtereditems.length > 0 && <div className="dropdown dropdown-tags">
                     <h3>Рекомендуемые Навыки</h3>
-                    {filtereditems.map(item => (<a onClick={() => onClick(item)}>{item.name}</a>))}
+                    {filtereditems.map(item => (<a key={item.id} onClick={() => onClick(item)}>{item.name}</a>))}
                 </div>}
             </div>
         </div>

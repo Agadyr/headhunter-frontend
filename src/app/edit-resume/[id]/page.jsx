@@ -207,7 +207,7 @@ export default function CreateResume() {
             </fieldset>
 
 
-            <AutoCompliteTags placeholder="" type="text" label="Ключевые Навыки" size="fieldset-md" items={allskills} onSelect={onSkillsChange} selected={skills.split(",").map(item => ({name:item}))}/>
+            <AutoCompliteTags placeholder="" type="text" label="Ключевые Навыки" size="fieldset-md" items={allskills} onSelect={onSkillsChange} selected={skills.length > 0 ? skills.split(",").map(item => ({name:item})) : []}/>
 
 
             <h3>Образование</h3>

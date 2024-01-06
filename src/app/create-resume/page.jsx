@@ -34,7 +34,7 @@ export default function CreateResume() {
   const [position,setposition] = useState("")
   const [salary,setSalary] = useState()
   const [salary_type,setSalaryType] = useState("KZT")
-  const [skills,SetSelectedSkills] = useState("")
+  const [skills,SetSelectedSkills] = useState([])
   const [education,Seteducation] = useState([])
   const [foreignLanguages,SetforeignLanguages] = useState([])
   const[employmentTypes,SetSelectedEmpTypes] = useState([])
@@ -176,7 +176,7 @@ export default function CreateResume() {
             </fieldset>
 
 
-            <AutoCompliteTags placeholder="" type="text" label="Ключевые Навыки" size="fieldset-md" items={allskills} onSelect={onSkillsChange} selected={[]}/>
+            <AutoCompliteTags placeholder="" type="text" label="Ключевые Навыки" size="fieldset-md" items={allskills} onSelect={onSkillsChange} selected={skills.length > 0 ? skills.split(",").map(item => ({name:item})) : []}/>
 
 
             <h3>Образование</h3>
