@@ -2,16 +2,18 @@
 import { useEffect, useState } from "react"
 import Header from "@/components/header"
 import { useDispatch, useSelector } from "react-redux"
-import { getSpecializations,getCities, getexperiences, getSkills, getEmpTypes, setEmpTypes } from "@/app/store/slices/vacancySlice"
+import { getSpecializations,getCities, getexperiences, getSkills, getEmpTypes, setEmpTypes,createVacancy } from "@/app/store/slices/vacancySlice"
 import ModalSelectSpec from "@/components/ModalSelectSpec"
 import AutoCompliteSelect from "@/components/AutoCompliteSelect"
 import AutoCompliteTags from "@/components/AutoCompliteTags"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useRouter } from "next/navigation"
 export default function CreateVacancy(){
     const[name,SetName] = useState('')
     const [cityId,setCity] = useState()
     const[specializationId,SetspecializationId] = useState()
+    const[specializationName,SetspecializationName] = useState()
     const[salary_from,Setsalary_from] = useState("")
     const[salary_to,Setsalary_to] = useState("")
     const[salary_type,SetSalaryType] = useState('KZT')
@@ -22,6 +24,7 @@ export default function CreateVacancy(){
     const[employmentTypeId,SetEmploymentTypes] = useState()
     const [isSpecModalOpen,SetSpecModalOpen] = useState(false)
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const closeSpecModal = () => {
         SetSpecModalOpen(false)
@@ -37,6 +40,8 @@ export default function CreateVacancy(){
 
     const handleOnSpecChange = (e) => {
         SetspecializationId(e.target.value*1)
+        SetspecializationName(e.target.dataset.name)
+        closeSpecModal()
     }
     const handleChangeExp = (e) => {
         SetExperienceId(e.target.value)
@@ -45,6 +50,22 @@ export default function CreateVacancy(){
         const arr = data.map(item => item.name)
         SetSelectedSkills(arr.join(","))
       }
+    const handleSave = () => {
+        dispatch(createVacancy({
+            name,
+            specializationId:`${specializationId}`,
+            cityId:`${cityId}`,
+            description,
+            employmentTypeId,
+            salary_from:salary_from * 1,
+            salary_to:salary_to*1,
+            salary_type,
+            address,
+            experienceId,
+            skills,
+            about_company:""
+        },router))
+    }
 
     const cities = useSelector(state => state.vacancy.cities)
     const experiences = useSelector(state => state.vacancy.experiences)
@@ -67,6 +88,7 @@ export default function CreateVacancy(){
 
                 <fieldset className="fieldset-vertical">
                     <label>Указать спецализацию</label>
+                    {specializationName && <p>Выбранная спецализация: {specializationName}</p>}
                     <p className="link" onClick={() => SetSpecModalOpen(true)}>Указать спецализацию</p>
                 </fieldset>
                 {isSpecModalOpen && <ModalSelectSpec closeModal={closeSpecModal} onChange={handleOnSpecChange} value={specializationId}/>}
@@ -139,14 +161,14 @@ export default function CreateVacancy(){
                     <div>
                         {empTypes.map(et => 
                         <div className="radio" key={et.id}>
-                            <input type="radio" value={et.id} name="exp" onChange={(e) => SetEmploymentTypes(e.target.value)}/>
+                            <input type="radio" value={et.id} name="et" onChange={(e) => SetEmploymentTypes(e.target.value)}/>
                             <label>{et.name}</label>
                         </div>)}
                     </div>
                     
                 </fieldset>
 
-                <button className="button button-primary">Продолжить</button>
+                <button className="button button-primary" onClick={handleSave}>Продолжить</button>
             </div>
         </main>
     )

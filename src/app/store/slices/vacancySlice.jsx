@@ -22,9 +22,6 @@ export const VacancySlice = createSlice({
         setVacancy: (state,action) => {
             state.vacancy = action.payload.vacancy
         },
-        uppendVacancy: (state,action) => {
-            state.vacancies = [...state.vacancies,action.payload.newvacancy]
-        },
         handleDeletedVacancy:(state,action) => {
             let vacancies = [...state.vacancies]
             vacancies = vacancies.filter(item => item.id !== action.payload )
@@ -48,8 +45,17 @@ export const VacancySlice = createSlice({
     }
 })
 
-export const {SetMyVacancies,uppendVacancy,setVacancy,handleDeletedVacancy,setSpecializations,setCities,setExperiences,setSkills,setEmpTypes} = VacancySlice.actions
+export const {SetMyVacancies,setVacancy,handleDeletedVacancy,setSpecializations,setCities,setExperiences,setSkills,setEmpTypes} = VacancySlice.actions
 
+
+export const createVacancy = (sendData,router) => async (dispatch) => {
+    try {
+        const res = await axios.post(`${END_POINT}/api/vacancy`,sendData)
+        router.push("/vacansy")
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+    }
+}
 export const getMyvacancies = () => async(dispatch) =>{
     try {
         const res = await axios.get(`${END_POINT}/api/vacancy`)
@@ -130,15 +136,7 @@ export const getEmpTypes= () => async(dispatch) => {
 
     
 // }
-// export const createResume = (sendData,router) => async (dispatch) => {
-//     try {
-//         const res = await axios.post(`${END_POINT}/api/resume`,sendData)
-//         router.push("/resumes")
-//         dispatch(uppendResume({newresume:res.data}))
-//     } catch (error) {
-//         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
-//     }
-// }
+
 
 // export const editResume = (sendData,router) => async (dispatch) => {
 //     try {

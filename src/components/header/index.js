@@ -23,7 +23,7 @@ export default function Header(){
                             Поиск
                         </button>
                         {currentUser && currentUser.role && currentUser.role.name === 'manager' && 
-                        <Link href="/create-vacansy" className="header-button  header-button-green">
+                        <Link href="/create-vacancy" className="header-button  header-button-green">
                             Создать Вакансию
                         </Link>}
 
