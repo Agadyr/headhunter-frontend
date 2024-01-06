@@ -1,0 +1,45 @@
+.cardvacancyshow{
+    max-width: 550px;
+    width: 100%;
+}
+.cardcompanyshow{
+    width: 30%;
+    height: 20%;
+    margin-left: 30px;
+}
+.cardcompanyshow h3{
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 15px;
+}
+.cardcompanyshow p{
+    color: #000;
+}
+.redBall {
+    display: inline-block;
+    width: 10px; 
+    height: 10px; 
+    background-color: #CD0505;
+    border-radius: 50%; 
+  }
+.button-green{
+    background-color: #4BB24E;
+    color: #fff;
+    width: 260px;
+    box-sizing: border-box;
+
+}
+.cardvacancyshow h4{
+    font-size: 18px;
+    font-weight: 400;
+    margin: 10px 0;
+}
+.fwb{
+    font-weight: bolder;
+}
+.vac-desc{
+    max-width: 550px;
+    width: 100%;
+    line-height: 25px;
+}

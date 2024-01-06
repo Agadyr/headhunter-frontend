@@ -89,8 +89,6 @@ export const getCities = () => async(dispatch) => {
     }
 
 }
-
-
 export const getexperiences = () => async(dispatch) => {
     try {
        const res = await axios.get(`${END_POINT}/api/experiences`)
@@ -134,16 +132,16 @@ export const deleteVacancy = (id) => async (dispatch) => {
     }
 }
 
-// export const getResumeById = (id) => async(dispatch) =>{
-//     try {
-//         const res = await axios.get(`${END_POINT}/api/resume/${id}`)
-//         dispatch(setResume({resume:res.data}))
-//     } catch (error) {
-//         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
-//     }
+export const getVacancyById = (id) => async(dispatch) =>{
+    try {
+        const res = await axios.get(`${END_POINT}/api/vacancy/${id}`)
+        dispatch(setVacancy({vacancy:res.data}))
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+    }
 
     
-// }
+}
 
 
 // export const editResume = (sendData,router) => async (dispatch) => {
