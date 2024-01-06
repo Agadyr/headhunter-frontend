@@ -41,7 +41,7 @@ return (
                             <button className="button button-primary" type="button" onClick={() => handleSignIn()}> Войти в личный кабинет</button>
                         </form>
                         <div className="flex flex-jc-sb mtb4">
-                            <Link className="link" href="/">Регистрация для поиска сотрудников</Link>
+                            <Link className="link" href="/employer/signup">Регистрация для поиска сотрудников</Link>
                         </div>
                         {error && Object.keys(error).map(key => ( <p key={key}  className="error">{ error[key] }</p>))}
                     </div>

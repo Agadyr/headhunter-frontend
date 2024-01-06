@@ -6,7 +6,16 @@
     padding: 20px 0;
     position: relative;
 }
-
+.fieldset-vertical{
+    border: none;
+    margin: 0 0 30px;
+    padding: 0;
+}
+.fieldset-vertical label{
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: block;
+}
 .fieldset-sm{
     width: 100%;
     max-width: 400px;

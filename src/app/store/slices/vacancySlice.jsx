@@ -8,7 +8,8 @@ export const VacancySlice = createSlice({
     name:"vacancy",
     initialState:{
         vacancies:[],
-        vacancy:{}
+        vacancy:{},
+        specializations:[]
     },
     reducers:{
         SetMyVacancies: (state,action) => {
@@ -24,17 +25,32 @@ export const VacancySlice = createSlice({
             let vacancies = [...state.vacancies]
             vacancies = vacancies.filter(item => item.id !== action.payload )
             state.vacancies = vacancies
+        },
+        setSpecializations:(state,action) => {
+            state.specializations = action.payload
         }
     }
 })
 
-export const {SetMyVacancies,uppendVacancy,setVacancy,handleDeletedVacancy} = VacancySlice.actions
+export const {SetMyVacancies,uppendVacancy,setVacancy,handleDeletedVacancy,setSpecializations} = VacancySlice.actions
 
 export const getMyvacancies = () => async(dispatch) =>{
     try {
         const res = await axios.get(`${END_POINT}/api/vacancy`)
         console.log(res.data);
         dispatch(SetMyVacancies({vacancies:res.data}))
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+    }
+
+    
+}
+
+export const getSpecializations = () => async(dispatch) =>{
+    try {
+        const res = await axios.get(`${END_POINT}/api/specializations`)
+        console.log(res.data);
+        dispatch(setSpecializations(res.data))
     } catch (error) {
         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
     }

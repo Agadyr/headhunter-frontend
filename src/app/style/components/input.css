@@ -5,6 +5,7 @@
     width: 450px;
     border: 1px solid #ddd;
     outline: none;
+    box-sizing: border-box;
 }
 .inputauth{
     height: 40px;

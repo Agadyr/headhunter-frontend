@@ -5,6 +5,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 3;
+
 }
 .modal-back-drop{
     position: absolute;
@@ -24,6 +25,8 @@
     height: max-content;
     margin: 100px auto 0;
     z-index: 102;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 

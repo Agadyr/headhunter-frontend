@@ -16,7 +16,7 @@ export default function Vacancy(){
             <div className="container"> 
                 <div className="flex flex-ai-c flex-jc-sb p7b7">
                     <h1>Мои вакансии</h1>
-                    <Link className="button button-secondary-bordered" href="/create-vacansy">Создать Вакансию</Link>
+                    <Link className="button button-secondary-bordered" href="/create-vacancy">Создать Вакансию</Link>
                 </div>
                 <MyVacancies/>
             </div>

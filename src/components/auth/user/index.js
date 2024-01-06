@@ -41,14 +41,14 @@ export default function userLogin(){
     return(
         <section className="login-page"> 
             {isAuth ? "true":"false"}
-            {step === 1 && <div className="card">
+            {step === 1 && <div className="card card-auth">
                 <form>
                     <h1>Поиск Работы</h1>
                     <input className="inputauth" placeholder="Введите email" value={email} onChange={(e) => Setemail(e.target.value)}/>
                     <button className="button button-primary" type="button" onClick={sendVerifyEmail}>Продолжить</button>
                 </form>
             </div>}
-            {step === 1 && <div className="card">
+            {step === 1 && <div className="card card-auth">
                 <div className="card_for_offer">
                     <h1>Поиск Сотрудников</h1>
                     <p>Размещение вакансий и доступ к базе резюме</p>
@@ -56,7 +56,7 @@ export default function userLogin(){
                 </div>
             </div>}
             {step === 2 &&
-            <div className="card card_modal">
+            <div className="card card_modal card-auth">
                 <h1>Отправили код на ...</h1>
                 <p>Напишите его что бы потвердить что это вы, а не кто то другой</p>
                 <form>
