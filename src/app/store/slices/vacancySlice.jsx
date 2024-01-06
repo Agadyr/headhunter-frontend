@@ -9,7 +9,9 @@ export const VacancySlice = createSlice({
     initialState:{
         vacancies:[],
         vacancy:{},
-        specializations:[]
+        specializations:[],
+        cities:[],
+        experiences:[]
     },
     reducers:{
         SetMyVacancies: (state,action) => {
@@ -28,11 +30,17 @@ export const VacancySlice = createSlice({
         },
         setSpecializations:(state,action) => {
             state.specializations = action.payload
+        },
+        setCities:(state,action) => {
+            state.cities = action.payload
+        },
+        setExperiences:(state,action) => {
+            state.experiences = action.payload
         }
     }
 })
 
-export const {SetMyVacancies,uppendVacancy,setVacancy,handleDeletedVacancy,setSpecializations} = VacancySlice.actions
+export const {SetMyVacancies,uppendVacancy,setVacancy,handleDeletedVacancy,setSpecializations,setCities,setExperiences} = VacancySlice.actions
 
 export const getMyvacancies = () => async(dispatch) =>{
     try {
@@ -49,13 +57,35 @@ export const getMyvacancies = () => async(dispatch) =>{
 export const getSpecializations = () => async(dispatch) =>{
     try {
         const res = await axios.get(`${END_POINT}/api/specializations`)
-        console.log(res.data);
         dispatch(setSpecializations(res.data))
     } catch (error) {
         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
     }
 
     
+}
+
+export const getCities = () => async(dispatch) => {
+    try {
+       const res = await axios.get(`${END_POINT}/api/region/cities`)
+       dispatch(setCities(res.data))
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+
+    }
+
+}
+
+
+export const getexperiences = () => async(dispatch) => {
+    try {
+       const res = await axios.get(`${END_POINT}/api/experiences`)
+       dispatch(setExperiences(res.data))
+    } catch (error) {
+        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
+
+    }
+
 }
 
 // export const getResumeById = (id) => async(dispatch) =>{

@@ -12,6 +12,10 @@
     width: 20px;
     height: 20px;
 }
+.radio label{
+    margin: 0;
+    font-weight: 400;
+}
 .checkbox{
     display: flex;
     gap: 10px;

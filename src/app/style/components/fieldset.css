@@ -10,6 +10,16 @@
     border: none;
     margin: 0 0 30px;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.fieldset-vertical .dropdown{
+    top:78px;
+    left: 0;
+}
+.fieldset-vertical .tag{
+    
+    margin-right: 50px;
 }
 .fieldset-vertical label{
     font-weight: 700;
