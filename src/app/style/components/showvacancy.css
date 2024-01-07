@@ -1,5 +1,5 @@
 .cardvacancyshow{
-    max-width: 550px;
+    max-width: 600px;
     width: 100%;
 }
 .cardcompanyshow{
@@ -39,7 +39,17 @@
     font-weight: bolder;
 }
 .vac-desc{
-    max-width: 550px;
+    max-width: 600px;
     width: 100%;
     line-height: 25px;
+}
+.button-bordered-green{
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #4BB24E;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.cardvacancyshow a{
+    width: 150px;
 }

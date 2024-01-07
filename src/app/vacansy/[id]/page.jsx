@@ -9,6 +9,7 @@ export default function VacancyPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const vacancy = useSelector((state) => state.vacancy.vacancy);
+  const current_user = useSelector(state => state.auth.currentUSer)
   const didMount = () => {
     dispatch(getVacancyById(id));
   };
@@ -24,9 +25,7 @@ export default function VacancyPage() {
       <div>
         <div className="container">
           <div className="flex flex-ai-c flex-jc-sb p7b7">
-            {/* <Link className="button button-secondary-bordered"href={`/edit-resume/${resume.id}`}>
-              Редактировать
-            </Link> */}
+
           </div>
           <div className="flex ">
             <div className="card cardvacancyshow">
@@ -40,7 +39,14 @@ export default function VacancyPage() {
               </p>}
 
               {vacancy.employmentType && <p>Тип занятости: {vacancy.employmentType.name}</p>}
-              <button className="button button-green">Откликнуться</button>
+              {(current_user && vacancy.userId) && (current_user.id !== vacancy.userId) && <div className="flex flex-ai-c">
+                <button className="button button-green">Откликнуться</button>
+                <button className="button button-bordered-green"><img src="/images/greenlike.svg" alt="" /></button>
+              </div>}
+              {(current_user && vacancy.userId) && (current_user.id == vacancy.userId) && 
+              <Link className="button button-secondary-bordered"href={`/edit-vacancy/${vacancy.id}`}>
+              Редактировать
+            </Link>}
             </div>
             <div className="card cardcompanyshow">
                 {vacancy.company && <h3>{vacancy.company.name} <img src="/images/trusted.svg" alt="" /></h3>}
