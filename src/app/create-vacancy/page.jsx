@@ -83,7 +83,7 @@ export default function CreateVacancy(){
 
                 <fieldset className="fieldset-vertical">
                     <label>Название Вакансии</label>
-                    <input className="input" placeholder="Название" type="text" value={name} onChange={(e) => SetName(e.target.value)}/>
+                    <input className="input w45" placeholder="Название" type="text" value={name} onChange={(e) => SetName(e.target.value)}/>
                 </fieldset>
 
                 <fieldset className="fieldset-vertical">
@@ -93,14 +93,14 @@ export default function CreateVacancy(){
                 </fieldset>
                 {isSpecModalOpen && <ModalSelectSpec SetSpecModalOpen={SetSpecModalOpen} closeModal={closeSpecModal} onChange={handleOnSpecChange} value={specializationId}/>}
 
-                <AutoCompliteSelect placeholder="Например, Караганда" type="text" label="Город проживания" size="fieldset-md fieldset-vertical" items={cities} onSelect={(data) => setCity(data.id)}/>
+                <AutoCompliteSelect placeholder="Например, Караганда" type="text" label="Город проживания" size="fieldset-md fieldset-vertical w45"  items={cities} onSelect={(data) => setCity(data.id)}/>
 
                 <fieldset className="fieldset-vertical fieldset-md">
                     <label>Предполагаемый уровень дохода в месяц или за объем робот</label>
                     <div className="input-group">
-                        <input className="input" placeholder="От" type="text" value={salary_from} onChange={(e) => Setsalary_from(e.target.value)}/>
-                        <input className="input" placeholder="До" type="text" value={salary_to} onChange={(e) => Setsalary_to(e.target.value)}/>
-                        <select className="input" name="salary_type" value={salary_type} onChange={(e) => SetSalaryType(e.target.value)}>
+                        <input className="input w45" placeholder="От" type="text" value={salary_from} onChange={(e) => Setsalary_from(e.target.value)}/>
+                        <input className="input w45" placeholder="До" type="text" value={salary_to} onChange={(e) => Setsalary_to(e.target.value)}/>
+                        <select className="input w45" name="salary_type" value={salary_type} onChange={(e) => SetSalaryType(e.target.value)}>
                             <option value={"KZT"}>KZT</option>
                             <option value={"RUB"}>RUB</option>
                             <option value={"USD"}>USD</option>
@@ -111,7 +111,7 @@ export default function CreateVacancy(){
 
                 <fieldset className="fieldset-vertical">
                     <label>Адрес</label>
-                    <input className="input" placeholder="Введите адрес" type="text" value={address} onChange={(e) => SetAdress(e.target.value)}/>
+                    <input className="input w45" placeholder="Введите адрес" type="text" value={address} onChange={(e) => SetAdress(e.target.value)}/>
                 </fieldset>
                 
                 <fieldset className="fieldset-vertical fieldset-md">
@@ -119,7 +119,7 @@ export default function CreateVacancy(){
                     <div>
                         {experiences.map(exp => 
                         <div className="radio" key={exp.id}>
-                            <input type="radio" value={exp.id} name="exp" onChange={handleChangeExp}/>
+                            <input   type="radio" value={exp.id} name="exp" onChange={handleChangeExp}/>
                             <label>{exp.duration}</label>
                         </div>)}
                     </div>
@@ -153,7 +153,7 @@ export default function CreateVacancy(){
                     </div>
                 </fieldset>
 
-                <AutoCompliteTags placeholder="Например, организация конференций" type="text" label="Ключевые Навыки" size="fieldset-md fieldset-vertical" items={allskills} onSelect={onSkillsChange} selected={skills.length > 0 ? skills.split(",").map(item => ({name:item})) : []}/>
+                <AutoCompliteTags placeholder="Например, организация конференций" type="text" label="Ключевые Навыки" size="fieldset-md fieldset-vertical w45" items={allskills} onSelect={onSkillsChange} selected={skills.length > 0 ? skills.split(",").map(item => ({name:item})) : []}/>
 
                 <fieldset className="fieldset-vertical fieldset-md">
                     <h2 className="mtb2">Дополнительно</h2>
@@ -161,7 +161,7 @@ export default function CreateVacancy(){
                     <div>
                         {empTypes.map(et => 
                         <div className="radio" key={et.id}>
-                            <input type="radio" value={et.id} name="et" onChange={(e) => SetEmploymentTypes(e.target.value)}/>
+                            <input  type="radio" value={et.id} name="et" onChange={(e) => SetEmploymentTypes(e.target.value)}/>
                             <label>{et.name}</label>
                         </div>)}
                     </div>

@@ -33,7 +33,7 @@ export default function SearchVacancy(){
             salary_type,
             experienceId,
             employmentTypeId
-        }))
+        },router))
     }
 
     const handleChangeExp = (e) => {

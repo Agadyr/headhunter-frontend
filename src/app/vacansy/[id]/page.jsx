@@ -58,8 +58,8 @@ export default function VacancyPage() {
             {vacancy.company && <p className="secondary mt2 fwb">{vacancy.company.name}</p>}
             {vacancy.company && <p className="secondary">{vacancy.company.description}</p>}
 
-            <p className="secondary vac-desc">{vacancy.description}</p>
-            <p className="secondary">{vacancy.address}</p>
+            <p className="secondary vac-desc" dangerouslySetInnerHTML={{__html:vacancy.description}}></p>
+            <p className="secondary" >{vacancy.address}</p>
 
             <h3>Ключевые навыки</h3>
 

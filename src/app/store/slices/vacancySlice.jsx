@@ -147,7 +147,7 @@ export const getVacancyById = (id) => async(dispatch) =>{
 }
 
 
-export const getSearchedvacancies = (params) => async(dispatch) => {
+export const getSearchedvacancies = (params,router) => async(dispatch) => {
     try {
         const {
             q,
@@ -168,9 +168,9 @@ export const getSearchedvacancies = (params) => async(dispatch) => {
         if(experienceId) queryString += `experienceId=${experienceId}&`
         if(employmentTypeId) queryString += `employmentTypeId=${employmentTypeId}&`
 
-        
+        router.push(`/search/vacancy${queryString}`)
+
         const res = await axios.get(`${END_POINT}/api/vacancy/search${queryString}`)
-        console.log(res.data);
         dispatch(SetVacancies({vacancies:res.data}))
         
     } catch (error) {
