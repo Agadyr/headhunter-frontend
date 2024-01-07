@@ -13,10 +13,13 @@ export const VacancySlice = createSlice({
         cities:[],
         experiences:[],
         skills:[],
-        empTypes:[]
+        empTypes:[],
     },
     reducers:{
-        SetMyVacancies: (state,action) => {
+        SetVacancies: (state,action) => {
+            state.vacancies = action.payload.vacancies
+        },
+        SetSearchedVacancies:(state,action) => {
             state.vacancies = action.payload.vacancies
         },
         setVacancy: (state,action) => {
@@ -45,7 +48,7 @@ export const VacancySlice = createSlice({
     }
 })
 
-export const {SetMyVacancies,setVacancy,handleDeleteVacancy,setSpecializations,setCities,setExperiences,setSkills,setEmpTypes} = VacancySlice.actions
+export const {SetVacancies,setVacancy,handleDeleteVacancy,setSpecializations,setCities,setExperiences,setSkills,setEmpTypes} = VacancySlice.actions
 
 
 export const createVacancy = (sendData,router) => async (dispatch) => {
@@ -60,7 +63,7 @@ export const getMyvacancies = () => async(dispatch) =>{
     try {
         const res = await axios.get(`${END_POINT}/api/vacancy`)
         console.log(res.data);
-        dispatch(SetMyVacancies({vacancies:res.data}))
+        dispatch(SetVacancies({vacancies:res.data}))
     } catch (error) {
         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")
     }
@@ -143,6 +146,37 @@ export const getVacancyById = (id) => async(dispatch) =>{
     
 }
 
+
+export const getSearchedvacancies = (params) => async(dispatch) => {
+    try {
+        const {
+            q,
+            specializationId,
+            cityId,
+            salary,
+            salary_type,
+            experienceId,
+            employmentTypeId
+        } = params
+
+        let queryString = '?'
+        if(q) queryString += `q=${q}&`
+        if(specializationId) queryString += `specializationId=${specializationId}&`
+        if(cityId) queryString += `cityId=${cityId}&`
+        if(salary) queryString += `salary=${salary}&`
+        if(salary_type) queryString += `salary_type=${salary_type}&`
+        if(experienceId) queryString += `experienceId=${experienceId}&`
+        if(employmentTypeId) queryString += `employmentTypeId=${employmentTypeId}&`
+
+        
+        const res = await axios.get(`${END_POINT}/api/vacancy/search${queryString}`)
+        console.log(res.data);
+        dispatch(SetVacancies({vacancies:res.data}))
+        
+    } catch (error) {
+        
+    }
+}
 
 // export const editResume = (sendData,router) => async (dispatch) => {
 //     try {

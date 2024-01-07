@@ -91,7 +91,7 @@ export default function CreateVacancy(){
                     {specializationName && <p>Выбранная спецализация: {specializationName}</p>}
                     <p className="link" onClick={() => SetSpecModalOpen(true)}>Указать спецализацию</p>
                 </fieldset>
-                {isSpecModalOpen && <ModalSelectSpec closeModal={closeSpecModal} onChange={handleOnSpecChange} value={specializationId}/>}
+                {isSpecModalOpen && <ModalSelectSpec SetSpecModalOpen={SetSpecModalOpen} closeModal={closeSpecModal} onChange={handleOnSpecChange} value={specializationId}/>}
 
                 <AutoCompliteSelect placeholder="Например, Караганда" type="text" label="Город проживания" size="fieldset-md fieldset-vertical" items={cities} onSelect={(data) => setCity(data.id)}/>
 

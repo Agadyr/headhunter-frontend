@@ -12,6 +12,10 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+    min-width: 0;
+}
+.fieldset-vertical .input{
+    width: 100%;
 }
 .fieldset-vertical .dropdown{
     top:78px;

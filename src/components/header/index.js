@@ -6,7 +6,6 @@ export default function Header(){
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.auth.isAuth)
     const currentUser = useSelector((state) => state.auth.currentUSer)
-    console.log(currentUser);
     return(
         <header className="header"> 
             <div className="container">
@@ -18,10 +17,10 @@ export default function Header(){
                         <a>Помощь</a>
                     </div>
                     <div>
-                        <button className="header-search">
+                        <Link href="/search/vacancy/advanced" className="header-search">
                         <img src="/images/search.svg"/>
                             Поиск
-                        </button>
+                        </Link>
                         {currentUser && currentUser.role && currentUser.role.name === 'manager' && 
                         <Link href="/create-vacancy" className="header-button  header-button-green">
                             Создать Вакансию

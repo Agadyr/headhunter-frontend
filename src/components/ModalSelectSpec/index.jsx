@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import SpecType from "./specType";
-export default function ModalSelectSpec({closeModal,onChange,value}){
+export default function ModalSelectSpec({closeModal,onChange,value,SetSpecModalOpen}){
     const[search,Setsearch] = useState('')
     const [filteredSpecTypec,SetfilteredSpecTypec] = useState([])
     const specializationTypes = useSelector(state => state.vacancy.specializations)
@@ -23,7 +23,11 @@ export default function ModalSelectSpec({closeModal,onChange,value}){
         <div className="modal">
             <div className="modal-back-drop" onClick={closeModal}></div>
             <div className="modal-inner">
-                <h3>Кого вы хотите найти?</h3>
+            <div className="flex flex-ai-c flex-jc-sb">
+            <h3>Кого вы хотите найти?</h3>
+                <span onClick={() => SetSpecModalOpen(false)}>X</span>
+            </div>
+                
 
                 <input className="input" type="text" value={search} onChange={onSearch} placeholder="Быстрый Поиск"/>
                 {filteredSpecTypec.map((specType,index) => (<SpecType specType={specType} key={index} onChange={onChange} value={value}/>))}
