@@ -15,6 +15,7 @@ export default function SearchVacancyAdvanced(){
     const[salary_type,SetSalaryType] = useState('KZT')
     const[experienceId,SetExperienceId] = useState()
     const [isSpecModalOpen,SetSpecModalOpen] = useState(false)
+    const[employmentTypeId,SetEmploymentTypes] = useState()
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -40,25 +41,19 @@ export default function SearchVacancyAdvanced(){
     }
 
     const handleSearch = () => {
-        dispatch(createVacancy({
-            name,
-            specializationId:`${specializationId}`,
-            cityId:`${cityId}`,
-            description,
-            employmentTypeId,
-            salary_from:salary_from * 1,
-            salary_to:salary_to*1,
-            salary_type,
-            address,
-            experienceId,
-            skills,
-            about_company:""
-        },router))
+        let queryString = '?'
+        if(q) queryString += `q=${q}&`
+        if(specializationId) queryString += `specializationId=${specializationId}&`
+        if(cityId) queryString += `cityId=${cityId}&`
+        if(salary) queryString += `salary=${salary}&`
+        if(salary_type) queryString += `salary_type=${salary_type}&`
+        if(experienceId) queryString += `experienceId=${experienceId}&`
+        if(employmentTypeId) queryString += `employmentTypeId=${employmentTypeId}&`
+        router.push(`/search/vacancy?q=${queryString}`)
     }
 
     const cities = useSelector(state => state.vacancy.cities)
     const experiences = useSelector(state => state.vacancy.experiences)
-    const allskills = useSelector(state => state.vacancy.skills)
     const empTypes = useSelector(state => state.vacancy.empTypes)
     
     return(
@@ -105,6 +100,19 @@ export default function SearchVacancyAdvanced(){
                         <div className="radio" key={exp.id}>
                             <input type="radio" value={exp.id} name="exp" onChange={handleChangeExp}/>
                             <label>{exp.duration}</label>
+                        </div>)}
+                    </div>
+                    
+                </fieldset>
+
+                <fieldset className="fieldset-vertical fieldset-md">
+                    <h2 className="mtb2">Дополнительно</h2>
+                    <label>Тип занятости</label>
+                    <div>
+                        {empTypes.map(et => 
+                        <div className="radio" key={et.id}>
+                            <input type="radio" value={et.id} name="et" onChange={(e) => SetEmploymentTypes(e.target.value)}/>
+                            <label>{et.name}</label>
                         </div>)}
                     </div>
                     
