@@ -1,11 +1,26 @@
 'use client'
 import Link from "next/link"
 import { useSelector,useDispatch } from "react-redux"
-import { logOut } from "@/app/store/slices/authSlice"
+import { authorize, logOut } from "@/app/store/slices/authSlice"
+import { useEffect } from "react"
+import { jwtDecode } from "jwt-decode";
 export default function Header(){
     const dispatch = useDispatch()
     const isAuth = useSelector((state) => state.auth.isAuth)
     const currentUser = useSelector((state) => state.auth.currentUSer)
+    useEffect(() => {
+        
+        const token = localStorage.getItem("token")
+        if(token){
+            let decodedToken = jwtDecode(token)
+            if(decodedToken.exp * 1000 > Date.now()){
+                dispatch(authorize({token}))
+            }else{
+                localStorage.removeItem("token")
+            }
+        }
+        
+    },[])
     return(
         <header className="header"> 
             <div className="container">
