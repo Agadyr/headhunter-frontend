@@ -17,6 +17,7 @@ export const authSlice = createSlice({
     reducers:{
         authorize:(state,action) => {
             localStorage.setItem("token",action.payload.token)
+            axios.defaults.headers.common['Authorization'] = `Bearer ${action.payload.token}`
             const decoded  = jwtDecode(action.payload.token)
             state.currentUSer = {
                 id:decoded.id,

@@ -1,24 +1,46 @@
 "use client";
 import Header from "@/components/header";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVacancyById } from "@/app/store/slices/vacancySlice";
 import { useParams } from "next/navigation";
+import { getMyresumes, setResume } from "@/app/store/slices/resumeSlice";
+import { createApply, getEmployeeApplies } from "@/app/store/slices/applySlice";
 export default function VacancyPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [resumeId,setResumeId] = useState()
   const vacancy = useSelector((state) => state.vacancy.vacancy);
   const current_user = useSelector(state => state.auth.currentUSer)
+  const resumes = useSelector(state => state.resume.resumes)
+  const myapplies = useSelector(state => state.apply.applies)
+  console.log(current_user);
   const didMount = () => {
     dispatch(getVacancyById(id));
+    dispatch(getMyresumes())
+    dispatch(getEmployeeApplies())
   };
   useEffect(didMount, []);
+
+  useEffect(() => {
+    if(resumes[0]){
+      setResumeId(resumes[0].id)
+    }
+  },[resumes])
  
+
+  let applies = myapplies.some(item => item.vacancyId === id*1)
 
 
   let skills = [];
   if (vacancy.skills) skills = vacancy.skills.split(",");
+  const handleApply = () => {
+    dispatch(createApply({
+      resumeId,
+      vacancyId:id
+    }))
+  }
   return (
     <main>
       <Header />
@@ -39,8 +61,23 @@ export default function VacancyPage() {
               </p>}
 
               {vacancy.employmentType && <p>Тип занятости: {vacancy.employmentType.name}</p>}
-              {(current_user && vacancy.userId) && (current_user.id !== vacancy.userId) && <div className="flex flex-ai-c">
-                <button className="button button-green">Откликнуться</button>
+
+              {
+                current_user && current_user.role.name === "employee" && 
+                  (
+                    <select className="input mtb4" value={resumeId} onChange={(e) => setResume(e.target.value)}>
+                      {resumes.map(item => (<option key={item.id} value={item.id}>{item.position}</option>))}
+                    </select>
+                  )
+    
+              }
+
+              {(current_user && vacancy.userId) && (current_user.id !== vacancy.userId) && !applies && <div className="flex flex-ai-c">
+                <button className="button button-green" onClick={handleApply}>Откликнуться</button>
+                <button className="button button-bordered-green"><img src="/images/greenlike.svg" alt="" /></button>
+              </div>}
+              {(current_user && vacancy.userId) && (current_user.id !== vacancy.userId) && applies && <div className="flex flex-ai-c">
+                <Link href="/applies" className="button button-green" onClick={handleApply}>Смотреть Отклики</Link>
                 <button className="button button-bordered-green"><img src="/images/greenlike.svg" alt="" /></button>
               </div>}
               {(current_user && vacancy.userId) && (current_user.id == vacancy.userId) && 
@@ -63,8 +100,8 @@ export default function VacancyPage() {
 
             <h3>Ключевые навыки</h3>
 
-            {skills.map((skill) => (
-            <span className="tag p2 mr2">{skill}</span>
+            {skills.map((skill,index) => (
+            <span key={`${skill}-${index}`} className="tag p2 mr2">{skill}</span>
           ))}
           
         </div>

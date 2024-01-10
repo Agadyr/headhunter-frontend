@@ -33,6 +33,7 @@ export const {setMyResumes,uppendResume,setResume,handleDeletedResume} = resumeS
 export const getMyresumes = () => async(dispatch) =>{
     try {
         const res = await axios.get(`${END_POINT}/api/resume`)
+        console.log(res.data);
         dispatch(setMyResumes({resumes:res.data}))
     } catch (error) {
         alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта")

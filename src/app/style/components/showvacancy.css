@@ -26,8 +26,9 @@
 .button-green{
     background-color: #4BB24E;
     color: #fff;
-    width: 260px;
+    width: 260px !important;
     box-sizing: border-box;
+    font-size: 14px;
 
 }
 .cardvacancyshow h4{

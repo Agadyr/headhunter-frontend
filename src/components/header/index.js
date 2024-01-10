@@ -6,8 +6,6 @@ import { useEffect } from "react"
 import { jwtDecode } from "jwt-decode";
 export default function Header(){
     const dispatch = useDispatch()
-    const isAuth = useSelector((state) => state.auth.isAuth)
-    const currentUser = useSelector((state) => state.auth.currentUSer)
     useEffect(() => {
         
         const token = localStorage.getItem("token")
@@ -18,9 +16,15 @@ export default function Header(){
             }else{
                 localStorage.removeItem("token")
             }
+
         }
         
     },[])
+    
+    const isAuth = useSelector((state) => state.auth.isAuth)
+    const currentUser = useSelector((state) => state.auth.currentUSer)
+    console.log(`${isAuth} MMM`);
+
     return(
         <header className="header"> 
             <div className="container">

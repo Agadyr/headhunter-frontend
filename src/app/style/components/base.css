@@ -62,9 +62,6 @@
 .mtb7{
     margin: 40px 0;
 }
-.mtb4{
-    margin: 20px 0;
-}
 .mtb2{
     margin: 10px 0 !important;
 }
@@ -97,6 +94,9 @@
 }
 .mt4{
     margin-top: 40px;
+}
+.mtb4{
+    margin: 20px 0 !important;
 }
 .gray{
     color: #8d8787;
