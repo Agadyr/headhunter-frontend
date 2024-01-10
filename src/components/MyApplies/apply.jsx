@@ -1,4 +1,5 @@
 'use client'
+import { deleteApply } from "@/app/store/slices/applySlice"
 // import { deleteVacancy, getEmpTypes } from "@/app/store/slices/vacancySlice"
 import Link from "next/link"
 import { useEffect } from "react"
@@ -16,7 +17,7 @@ export default function Applies({item}){
                     <p className="link">{item.vacancy && item.vacancy.name}</p>
                     {item.vacancy.address !== "" && <p className="graymin">{item.vacancy && item.vacancy.address}</p>}
                     {item.vacancy.address === "" && <p className="graymin">Адрес не Найден</p>}
-                    <span>Удалить</span>
+                    <span onClick={() => dispatch(deleteApply(item.id))}>Удалить</span>
                 </div>
             </div>
             <div className="col">

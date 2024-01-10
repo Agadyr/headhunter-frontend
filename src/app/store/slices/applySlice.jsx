@@ -17,11 +17,16 @@ export const applySlice = createSlice({
         },
         setApplies:(state,action) => {
             state.applies = action.payload
+        },
+        removeApply:(state,action) => {
+            let applies = [...state.applies]
+            applies = applies.filter(item => item.id !== action.payload)
+            state.applies = applies
         }
     }
 })
 
-export const {AppendApply,SetError,setApplies} = applySlice.actions
+export const {AppendApply,SetError,setApplies,removeApply} = applySlice.actions
 
 
 export const getEmployeeApplies = (data) => (dispatch) =>{
@@ -39,6 +44,10 @@ export const createApply = (data) => (dispatch) =>{
         console.log(e);
     })
 }
-
+export const deleteApply = (id) => (dispath) => {
+    axios.delete(`${END_POINT}/api/applies/${id}`).then(res => {
+        dispath(removeApply(id))
+    })
+}
 
 export default applySlice.reducer
