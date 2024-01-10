@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getResumeById } from "@/app/store/slices/resumeSlice";
 import { useParams } from "next/navigation";
+import { getAgeFromBirthday } from "@/app/utils/format";
 export default function ResumePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -14,21 +15,8 @@ export default function ResumePage() {
     dispatch(getResumeById(id));
   };
   useEffect(didMount, []);
-  const birthday = new Date(resume.birthday);
-  const MonthsInRussian = [
-    "Января",
-    "Февраля",
-    "Марта",
-    "Апреля",
-    "Мая",
-    "Июня",
-    "Июля",
-    "Августа",
-    "Сентября",
-    "Октября",
-    "Ноября",
-    "Декабря",
-  ];
+  const age = getAgeFromBirthday(resume.birthday)
+  const birthday = new Date(resume.birthday)
   const MonthsInRussian2 = [
     "Январь",
     "Февраль",
@@ -43,9 +31,20 @@ export default function ResumePage() {
     "Ноябрь",
     "Декабрь",
   ];
-  let age = 0;
-  age = new Date().getTime() - birthday.getTime();
-  age = parseInt(age / (1000 * 60 * 60 * 24 * 365));
+  const MonthsInRussian = [
+    "Января",
+    "Февраля",
+    "Марта",
+    "Апреля",
+    "Мая",
+    "Июня",
+    "Июля",
+    "Августа",
+    "Сентября",
+    "Октября",
+    "Ноября",
+    "Декабря",
+  ];
 
   const showPhone = (phone) => {
     let res = "";

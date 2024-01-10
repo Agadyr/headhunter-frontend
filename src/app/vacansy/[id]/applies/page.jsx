@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { getVacancyApplies } from "@/app/store/slices/applySlice";
-
+import Applies from "@/components/VacancyApplies"
 export default function VacancyApplies(){
     const {id} = useParams()
     const dispatch = useDispatch()
@@ -15,6 +15,8 @@ export default function VacancyApplies(){
 
     const applies = useSelector(state => state.apply.applies)
     const [status,SetStatus] = useState('NEW') 
+    
+    const filteredApplies =  applies.filter(item => item.status === status)
     return(
         <main>
             <Header/>
@@ -28,8 +30,8 @@ export default function VacancyApplies(){
                         <div className={`list-item ${status === "INVITATION" ? 'active' : ''}`} onClick={() => SetStatus("INVITATION")}>Приглашенный</div>
                         <div className={`list-item ${status === "DECLINED" ? 'active' : ''}`} onClick={() => SetStatus("DECLINED")}>Отказы</div>
                     </div>
-                    <div>
-                        Резюме разные
+                    <div className="w1">
+                        <Applies applies={filteredApplies}/>
                     </div>
                 </div>
 
