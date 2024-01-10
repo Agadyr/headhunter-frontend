@@ -30,7 +30,14 @@ export const {AppendApply,SetError,setApplies,removeApply} = applySlice.actions
 
 
 export const getEmployeeApplies = (data) => (dispatch) =>{
-    axios.get(`${END_POINT}/api/applies/employee`,data).then(res => {
+    axios.get(`${END_POINT}/api/applies/employee`).then(res => {
+        dispatch(setApplies(res.data))
+    }).catch(e => {
+        console.log(e);
+    })
+}
+export const getVacancyApplies = (id) => (dispatch) =>{
+    axios.get(`${END_POINT}/api/applies/vacancy/${id}`).then(res => {
         dispatch(setApplies(res.data))
     }).catch(e => {
         console.log(e);

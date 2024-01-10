@@ -1,0 +1,64 @@
+.manager-vacancy{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.left-manager-vacancy{
+    width: 74%;
+    height: 20px;
+}
+.right-manager-vacancy{
+    width: 24%;
+    height: 20px;
+}
+.right-manager-vacancy p{
+    color: #7b7777;
+    font-size: 15px;
+}
+.header-manager-vacancy{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+.header-manager-vacancy button{
+    border: 1px solid #b3b1b1;
+    background-color: transparent;
+    font-weight: 500;
+}
+.applies{
+    padding: 10px 0;
+    display: flex;  
+    align-items: center;
+    justify-content:space-between;
+    border-top:1px solid #b3b1b1 ;
+    border-bottom:1px solid #b3b1b1 ;
+    width: 85%;
+}
+.applies h1,h2{
+    font-size: 22px;
+    font-weight: 600;
+}
+.applies h2{
+    color: #3C9DF2;
+}
+.applies h2::before{
+    content: "";
+    border: 1px solid #b3b1b1;
+    margin-right: 10px;
+}
+.manager-vacancy-about h1{
+    font-size: 30px;
+}
+.manager-vacancy-about h3{
+    font-size: 20px;
+    font-weight: 500;
+}
+.manager-vacancy-about h4{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #3C9DF2;
+}
