@@ -16,7 +16,7 @@ export default function Applies({item}){
                 <div className=" response-vacansy-name">
                     <p className="link">{item.vacancy && item.vacancy.name}</p>
                     {item.vacancy.address !== "" && <p className="graymin">{item.vacancy && item.vacancy.address}</p>}
-                    {item.vacancy.address === "" && <p className="graymin">Адрес не Найден</p>}
+                    {item.vacancy.address === "" && <p className="graymin">Адрес не Указан</p>}
                     <span onClick={() => dispatch(deleteApply(item.id))}>Удалить</span>
                 </div>
             </div>

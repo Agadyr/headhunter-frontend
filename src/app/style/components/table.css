@@ -14,7 +14,22 @@
     background-color: #fff;
 }
 .row-header .col{
+    display: flex;
+    align-items: center;
     font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+}
+.row-header .col img{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.row-header .col.asc img{
+    transform: rotate(90deg);
+}
+.row-header .col.desc img{
+    transform: rotate(270deg);
 }
 .response-vacansy-name{
     display: flex;

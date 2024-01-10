@@ -23,7 +23,6 @@ export default function Header(){
     
     const isAuth = useSelector((state) => state.auth.isAuth)
     const currentUser = useSelector((state) => state.auth.currentUSer)
-    console.log(`${isAuth} MMM`);
 
     return(
         <header className="header"> 
@@ -33,6 +32,8 @@ export default function Header(){
                         <Link href="/"><img src="/images/logo.svg"/></Link>
                         {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href="/vacansy">Мои вакансии</Link>}
                         {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href="/resumes">Мои резюме</Link>}
+                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href="/applies">Мои отклики</Link>}
+
                         <a>Помощь</a>
                     </div>
                     <div>
