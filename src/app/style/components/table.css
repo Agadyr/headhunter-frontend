@@ -1,0 +1,35 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f4f4f477;
+    padding: 12px;
+}
+.row:nth-child(even){
+    background-color: #f4f4f477;
+}
+.col{
+    width: 33%;
+}
+.row-header{
+    background-color: #fff;
+}
+.row-header .col{
+    font-weight: 700;
+}
+.response-vacansy-name{
+    display: flex;
+    flex-direction: column;
+}
+.graymin{
+    font-size: 14px !important;
+    color: #a49f9f;
+}
+.response-vacansy-name span{
+    color: #0f49b7ff;
+    font-size: 13px;
+    cursor: pointer;
+}
+.response-vacansy-name span:hover{
+    color: rgba(15, 74, 183, 0.566);
+    transition: .2s;
+}
