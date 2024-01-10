@@ -34,14 +34,17 @@
     border-bottom:1px solid #b3b1b1 ;
     width: 85%;
 }
-.applies h1,h2{
+.applies  h1{
     font-size: 22px;
     font-weight: 600;
 }
-.applies h2{
+
+.for-apply-link{
     color: #3C9DF2;
+    font-size: 22px;
+    font-weight: 600;
 }
-.applies h2::before{
+.applies a::before{
     content: "";
     border: 1px solid #b3b1b1;
     margin-right: 10px;
