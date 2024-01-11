@@ -30,9 +30,7 @@ export default function VacancyApplies(){
                         <div className={`list-item ${status === "INVITATION" ? 'active' : ''}`} onClick={() => SetStatus("INVITATION")}>Приглашенный</div>
                         <div className={`list-item ${status === "DECLINED" ? 'active' : ''}`} onClick={() => SetStatus("DECLINED")}>Отказы</div>
                     </div>
-                    <div className="w1">
-                        <Applies applies={filteredApplies}/>
-                    </div>
+                    <Applies applies={filteredApplies}/>
                 </div>
 
             </div>

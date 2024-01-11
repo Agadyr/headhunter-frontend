@@ -25,6 +25,14 @@
     background-color: transparent;
     font-weight: 500;
 }
+.black-bordered{
+    border: 1px solid #b3b1b1;
+    background-color: transparent;
+    font-weight: 500;
+    padding: 8px 15px !important ;
+    border-radius: 4px;
+    cursor: pointer;
+}
 .applies{
     padding: 10px 0;
     display: flex;  

@@ -6,25 +6,68 @@
     margin-bottom   : auto;
 }
 .list-item{
-    padding: 10px;
+    padding: 15px;
     border-radius: 8px;
     cursor: pointer;
     margin-bottom: 5px;
+    color: #949799;
 }
 .list-item.active{
     border-radius: 8px;
-    background-color: #e7e7e7;
+    background-color: #ECEFF0;
+    color: black;
 }
 .list-item:hover{
-    background-color: #e7e7e7;
+    background-color: #ECEFF0;
     transition: .1s;
+    color: black;
 }
 .list-item:last-child{
     margin-bottom: 0;
 }
 .w1{
-    width: 100% !important;
+    width: calc(100% - 300px);
 }
 .card-resumes{
-    max-width: 95% !important;
+    margin-left: 30px;
+    padding-left: 30px;
+    border: 1px solid #7BCC7E;
+    margin-bottom: 15px;
+    /* max-width: calc(100% - 300px) !important; */
+}
+.card-resumes .redBall{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: #7BCC7E ;
+}
+.card-resumes p{
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+}
+.card-resumes h3{
+    margin-bottom: 10px !important;
+    margin-top: 5px !important;
+    padding: 0 !important;
+}
+.h4-contacts{
+    font-size: 13px;
+    color: #949799;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.contacts{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.contacts p{
+    margin-top: 3px !important;
+    margin-left: 7px !important;
+    color: black;
+}
+.tag-vacancy{
+    font-size: 13px;
+    padding: 6px;
+    margin-bottom: 10px;
 }

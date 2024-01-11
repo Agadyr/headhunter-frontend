@@ -5,7 +5,7 @@ export default function Applies({applies}){
     return(
         <div className="w1">
             {showapplies}
-            {showapplies.length <= 1  && <p className="ml2">Откликов не найдено</p>}
+            {showapplies.length <= 0  && <p className="ml2">Откликов не найдено</p>}
         </div>
     )
 }
